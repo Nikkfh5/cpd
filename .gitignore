@@ -1,0 +1,47 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+.eggs/
+venv/
+.venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+
+# Config
+.claude/
+
+# OS
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Generated binary artifacts
+results/**/*.npy
+
+# CatBoost internal training logs
+catboost_info/
+
+# LaTeX build artifacts
+*.synctex.gz
+*.aux
+*.log
+*.out
+*.toc
+*.bbl
+*.blg
+
+# Model weights (large files)
+models/*.pt
+models/*.cbm
+
+# Admin/internal docs (not needed for review)
+docs/plan.txt
+docs/Подготовка текста КТ1.docx
+docs/Рекомендательный документ (3).docx

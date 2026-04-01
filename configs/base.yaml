@@ -1,0 +1,139 @@
+dataset_source: "data_utils"
+generation:
+  length: 2000
+  dt: 1.0
+  D: 1.0
+  noise_type: "white"
+  seed: 42
+
+dataset_name: "synthetic_base"
+output_dir: "results"
+
+methods: "all"
+
+method_params:
+  Nyblom:
+    m: 2000
+  LSTM:
+    hidden_size: 256
+    num_layers: 2
+    dropout: 0.2
+    n_train_seq: 200
+    seq_length: 5000
+    n_val_seq: 30
+    epochs: 300
+    batch_size: 512
+    lr: 0.001
+    weight_decay: 0.0001
+    patience: 30
+    window_size: 50
+    threshold: 0.89
+    nms_min_distance: 50
+    weights_path: "models/lstm_h256_l2_seq5000_n200_all_noise_seed42.pt"
+  GRU:
+    hidden_size: 128
+    num_layers: 2
+    dropout: 0.2
+    n_train_seq: 100
+    seq_length: 5000
+    n_val_seq: 15
+    epochs: 100
+    batch_size: 512
+    lr: 0.001
+    weight_decay: 0.0001
+    patience: 15
+    window_size: 50
+    threshold: 0.99
+    nms_min_distance: 50
+    weights_path: "models/gru_h128_l2_seq5000_n100_all_noise_seed42.pt"
+  CatBoost:
+    window_size: 50
+    threshold: 0.57
+    nms_min_distance: 50
+    n_train_seq: 50
+    seq_length: 5000
+    n_val_seq: 10
+    iterations: 500
+    depth: 6
+    learning_rate: 0.05
+    weights_path: "models/catboost_seq5000_n50_seed42.cbm"
+  Transformer:
+    d_model: 64
+    nhead: 4
+    num_layers: 2
+    dim_feedforward: 256
+    dropout: 0.1
+    n_train_seq: 2
+    seq_length: 300
+    n_val_seq: 1
+    epochs: 100
+    batch_size: 512
+    lr: 0.001
+    weight_decay: 0.0001
+    patience: 15
+    window_size: 50
+    threshold: 0.7
+    nms_min_distance: 50
+    t4_fraction: 0.0
+    weights_path: "models/transformer_dm64_h4_l2_seq300_n2_all_noise_seed1.pt"
+  LSTM_v2:
+    hidden_size: 256
+    num_layers: 2
+    dropout: 0.2
+    n_train_seq: 200
+    seq_length: 5000
+    n_val_seq: 30
+    epochs: 300
+    batch_size: 512
+    lr: 0.001
+    weight_decay: 0.0001
+    patience: 30
+    window_size: 100
+    threshold: 0.3
+    nms_min_distance: 50
+    train_d_range: [0.2, 1.0]
+    train_dt_values: [0.5, 1.0, 2.0]
+    weights_path: "models/lstm_v2_h256_l2_w100_seq5000_n200_all_noise_seed42.pt"
+  GRU_v2:
+    hidden_size: 128
+    num_layers: 2
+    dropout: 0.2
+    n_train_seq: 100
+    seq_length: 5000
+    n_val_seq: 15
+    epochs: 100
+    batch_size: 512
+    lr: 0.001
+    weight_decay: 0.0001
+    patience: 15
+    window_size: 100
+    threshold: 0.3
+    nms_min_distance: 50
+    train_d_range: [0.2, 1.0]
+    train_dt_values: [0.5, 1.0, 2.0]
+    weights_path: "models/gru_v2_h128_l2_w100_seq5000_n100_all_noise_seed42.pt"
+  Transformer_v2:
+    d_model: 256
+    nhead: 8
+    num_layers: 6
+    dim_feedforward: 512
+    dropout: 0.1
+    n_train_seq: 100
+    seq_length: 5000
+    n_val_seq: 15
+    epochs: 100
+    batch_size: 512
+    lr: 0.001
+    weight_decay: 0.0001
+    patience: 15
+    window_size: 100
+    threshold: 0.49
+    nms_min_distance: 50
+    t4_fraction: 0.3
+    train_d_range: [0.2, 1.0]
+    train_dt_values: [0.5, 1.0, 2.0]
+    weights_path: "models/transformer_v2_dm256_h8_l6_w100_seq5000_n100_all_noise_seed42.pt"
+
+evaluation:
+  margin: 50
+  nan_mae: 9999.0
