@@ -1,0 +1,6 @@
+scenario,scenario_id,metric,method_a,method_b,mean_a,mean_b,mean_diff,median_diff,n_pairs,wilcoxon_statistic,p_value
+"D=1, white",same_noise_D10_white,f1,Transformer_v2_same_noise_white,CUSUM,0.5859215400000001,0.6631798200000002,-0.07725827999999998,-0.07956000000000002,50,66.0,3.489741828843762e-10
+"D=1, pink",same_noise_D10_pink,f1,Transformer_v2_same_noise_pink,CUSUM,0.26301764000000005,0.46379002,-0.20077237999999997,-0.198813,50,0.0,1.7763568394002505e-15
+"D=1, brownian",same_noise_D10_brownian,f1,Transformer_v2_same_noise_brownian,CUSUM,0.12119958,0.25914472000000005,-0.13794514,-0.1380905,50,0.0,1.7763568394002505e-15
+"D=1, blue",same_noise_D10_blue,f1,Transformer_v2_same_noise_blue,SNHT,0.15975894,0.52266662,-0.36290767999999995,-0.31818199999999996,50,128.5,9.051156624195755e-08
+"D=1, violet",same_noise_D10_violet,f1,Transformer_v2_same_noise_violet,SNHT,0.0777948,0.7933332999999999,-0.7155385000000001,-0.939394,50,1.0,3.552713678800501e-15

@@ -1,0 +1,6 @@
+result_group,scenario_id,summary_path,per_series_path,n_rows,n_methods,n_unique_seeds_min,seed_min,seed_max,issues,ok
+transformer,same_noise_D10_white,results\publication_same_noise\same_noise_D10_white\eval_multi\summary.csv,results\publication_same_noise\same_noise_D10_white\eval_multi\per_series.csv,50,1,50,1000,1049,,True
+transformer,same_noise_D10_pink,results\publication_same_noise\same_noise_D10_pink\eval_multi\summary.csv,results\publication_same_noise\same_noise_D10_pink\eval_multi\per_series.csv,50,1,50,1000,1049,,True
+transformer,same_noise_D10_brownian,results\publication_same_noise\same_noise_D10_brownian\eval_multi\summary.csv,results\publication_same_noise\same_noise_D10_brownian\eval_multi\per_series.csv,50,1,50,1000,1049,,True
+transformer,same_noise_D10_blue,results\publication_same_noise\same_noise_D10_blue\eval_multi\summary.csv,results\publication_same_noise\same_noise_D10_blue\eval_multi\per_series.csv,50,1,50,1000,1049,,True
+transformer,same_noise_D10_violet,results\publication_same_noise\same_noise_D10_violet\eval_multi\summary.csv,results\publication_same_noise\same_noise_D10_violet\eval_multi\per_series.csv,50,1,50,1000,1049,,True

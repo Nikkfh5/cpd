@@ -1,18 +1,13 @@
 """
-Модуль генерации синтетических данных для задачи обнаружения точек разладки (CPD).
+Synthetic trajectory generation for the CPD benchmark.
 
-Извлечено из ploting_graphs (1).ipynb (ячейки 2, 3, 22-27).
-Генерация траекторий SDE: dx = sin(x)*dt + sqrt(D)*noise
-с различными типами шума (white, pink, brownian, violet, blue).
+The public benchmark source is a discrete-time stochastic map,
+``x[t+1] = x[t] + sin(x[t]) * dt + sqrt(D) * error[t]``, with centered and
+normalized innovations. The legacy function names are kept for compatibility
+with trained adapters and old result artifacts.
 
-Определение точек разладки: момент, когда floor(x_t / π) изменяется
-(процесс переходит через границу кратную π).
-
-Публичный API:
-    generate_tc_dataframe  — аналог ячеек 22-27 ноутбука; возвращает DataFrame
-                             с колонками data_pi, levels, indic.
-    load_ecg_dataframe     — загружает ECG-данные из sample_29.csv и строит
-                             аналогичный DataFrame (если файл доступен).
+Change-point labels mark time steps where the integer level assigned to
+``x_t / pi`` changes.
 """
 
 import math
@@ -84,15 +79,18 @@ def get_noise(N, noise_type="white"):
 
 
 # ============================================================
-# 2. Генерация траектории SDE (из get_data, ветка no_error=False)
+# 2. Генерация траектории дискретной стохастической карты
 # ============================================================
 
 def generate_sde_trajectory(length, dt=1.0, D=0.5, noise_type="white", seed=42):
     """
-    Генерирует траекторию SDE: x_{t+1} = x_t + sin(x_t)*dt + sqrt(D)*errors[i]
+    Генерирует траекторию дискретной стохастической карты.
+
+    Используемое обновление:
+    x_{t+1} = x_t + sin(x_t)*dt + sqrt(D)*errors[i]
 
     Шум (errors) генерируется функцией get_noise, затем нормализуется
-    (центрируется и делится на std) — как в Binary_Telegraph_Process.get_data().
+    (центрируется и делится на std).
 
     :param length: количество шагов (не считая начального)
     :param dt: шаг по времени
@@ -190,7 +188,7 @@ def compute_levels(x_values):
 
 def generate_dataset(length, dt=1.0, D=0.5, noise_type="white", seed=42):
     """
-    Генерирует траекторию SDE + определяет точки разладки.
+    Генерирует траекторию и определяет точки разладки.
 
     :param length: количество шагов траектории
     :param dt: шаг по времени
@@ -210,7 +208,7 @@ def generate_multi_dataset(n_seq, seq_length, dt=1.0, D_range=(0.3, 2.0),
                            noise_types=None, seed=42, dt_values=None,
                            t4_fraction=0.0):
     """
-    Генерирует несколько траекторий SDE с разными D, dt и шумом для обучения.
+    Генерирует несколько траекторий с разными D, dt и шумом для обучения.
     Объединяет их в одну длинную последовательность.
 
     :param n_seq: количество последовательностей
@@ -223,7 +221,7 @@ def generate_multi_dataset(n_seq, seq_length, dt=1.0, D_range=(0.3, 2.0),
     :param dt_values: список значений dt для случайного выбора;
                       None = использовать фиксированный dt
     :param t4_fraction: доля последовательностей с T4-динамикой (sticky π-переходы);
-                        0.0 = только стандартная SDE, 1.0 = только T4
+                        0.0 = только стандартная карта, 1.0 = только T4
     :return: (x_values, cp_labels) — конкатенация всех последовательностей
     """
     if noise_types is None:
@@ -255,7 +253,7 @@ def generate_multi_dataset(n_seq, seq_length, dt=1.0, D_range=(0.3, 2.0),
 
 def generate_sde_trajectory_t4(length, dt=1.0, D=0.5, noise_type="white", seed=42):
     """
-    T4-вариант траектории SDE: та же динамика dx = sin(x)*dt + sqrt(D)*noise,
+    T4-вариант траектории: та же дискретная карта,
     но с «залипанием» вблизи кратных π.
 
     Когда следующее значение попадает в пределах 5% от кратного π
@@ -323,7 +321,7 @@ def compute_levels_clusters(x_values):
 
 def generate_dataset_t4(length, dt=1.0, D=0.5, noise_type="white", seed=42):
     """
-    Генерирует T4-траекторию SDE + определяет точки разладки (floor-разметка).
+    Генерирует T4-траекторию и определяет точки разладки (floor-разметка).
 
     Использует T4-динамику (sticky π-переходы) с той же floor(x/π)-разметкой,
     что и стандартный generate_dataset. Это даёт более «чёткие» переходы
@@ -343,9 +341,9 @@ def generate_dataset_t4(length, dt=1.0, D=0.5, noise_type="white", seed=42):
 
 def generate_dataset_clusters(length, dt=1.0, D=0.5, noise_type="white", seed=42):
     """
-    Генерирует стандартную траекторию SDE + определяет точки разладки (round-разметка).
+    Генерирует стандартную траекторию и определяет точки разладки (round-разметка).
 
-    Использует стандартную SDE-динамику с clusters-разметкой (round(x/π) вместо
+    Использует стандартную дискретную карту с clusters-разметкой (round(x/π) вместо
     floor(x/π)). Граница смены уровня находится посередине между кратными π —
     альтернативное определение точки разладки для анализа.
 
@@ -377,7 +375,7 @@ def generate_tc_dataframe(length, dt=1.0, D=0.5, noise_type="white", seed=42):
     Логика 1:1 из Binary_Telegraph_Process.data_to_pi() + индикаторный столбец
     из ячейки 27 ноутбука (t_c['indic']).
 
-    :param length: количество шагов SDE
+    :param length: количество шагов
     :param dt: шаг по времени
     :param D: коэффициент диффузии
     :param noise_type: тип шума — "white", "pink", "brownian", "violet", "blue"

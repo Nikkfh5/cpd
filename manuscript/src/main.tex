@@ -1,0 +1,86 @@
+\documentclass{ws-fnl}
+
+\usepackage{cite}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{url}
+
+\let\trimmarks\relax
+
+\begin{document}
+
+\markboth{N. Krutikov and P. Lukianchenko}
+{Detecting noise-induced transitions}
+
+%%%%%%%%%%%%%%%%%%%%% Publisher's Area please ignore %%%%%%%%%%%%%%%
+\catchline{}{}{}{}{}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{A Controlled Benchmark for Statistical Detection of Noise-Induced
+Transitions in Nonlinear Stochastic Dynamics}
+
+\author{Nikita Krutikov}
+
+\address{HSE University\\
+Moscow, Russia}
+
+\author{Petr Lukianchenko\footnote{Corresponding author.}}
+
+\address{HSE University\\
+Moscow, Russia\\
+plukyanchenko@hse.ru}
+
+\maketitle
+
+
+\begin{abstract}
+Noise-induced transitions are central to stochastic dynamics, but statistical
+detection benchmarks often use externally inserted shifts. We study a
+controlled alternative: trajectories of a nonlinear stochastic system where
+events are labeled by transitions between state-space regions after simulation.
+The task is therefore transition-time detection rather than ordinary
+parameter-break detection. Classical tests, window-based procedures, and
+learned detectors are evaluated under one protocol with independent training,
+calibration, and test trajectories. In the frozen four-scenario benchmark,
+classical homogeneity tests lead the sparse low-\(D\) white-noise case. Under
+the primary 25-step tolerance, learned window-based detectors lead the evaluated
+\(D=1.0\) cases and the strict-margin \(D=1.5\) white-noise case, whose ranking
+is sensitive to wider tolerances. At \(D=1.0\) with white noise, Transformer has
+the highest aggregate mean F1, but its paired difference from LSTM is not
+statistically significant. A same-noise Transformer diagnostic shows that
+noise-specific training alone does not produce a universal colored-noise neural
+advantage under the evaluated pipeline.
+\end{abstract}
+
+\keywords{Change point detection; stochastic dynamics;
+noise-induced transitions; colored noise; machine learning}
+
+\input{sections/01_introduction}
+\input{sections/02_related_work}
+\input{sections/03_data_generation}
+\input{sections/04_methods}
+\input{sections/05_experimental_protocol}
+\input{sections/06_results}
+\input{sections/07_discussion}
+\input{sections/08_conclusion}
+
+\section*{Declaration of competing interest}
+The authors declare no competing interests.
+
+\section*{Data and code availability}
+Code, configuration files, frozen benchmark outputs, and table/figure
+reproduction scripts are available at \url{https://github.com/Nikkfh5/cpd}.
+The repository is prepared as a versioned public release; a DOI-bearing archive
+will be linked after archival deposition.
+
+\section*{Funding}
+This research did not receive any specific grant from funding agencies in the
+public, commercial, or not-for-profit sectors.
+
+\bibliographystyle{ws-fnl}
+\bibliography{references}
+
+\end{document}

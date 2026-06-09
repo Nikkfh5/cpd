@@ -14,9 +14,6 @@ env/
 .vscode/
 .idea/
 
-# Config
-.claude/
-
 # OS
 Thumbs.db
 desktop.ini
@@ -40,8 +37,3 @@ catboost_info/
 # Model weights (large files)
 models/*.pt
 models/*.cbm
-
-# Admin/internal docs (not needed for review)
-docs/plan.txt
-docs/Подготовка текста КТ1.docx
-docs/Рекомендательный документ (3).docx

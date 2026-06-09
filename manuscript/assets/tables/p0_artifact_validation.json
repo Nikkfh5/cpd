@@ -1,0 +1,54 @@
+[
+  {
+    "scenario_id": "eval_multi_D05_white",
+    "summary_path": "results\\kaggle_output_v2\\eval_multi_D05_white\\summary.csv",
+    "per_series_path": "results\\kaggle_output_v2\\eval_multi_D05_white\\per_series.csv",
+    "n_summary_methods": 18,
+    "n_per_series_rows": 900,
+    "expected_n_series": 50,
+    "expected_seed_start": 1000,
+    "seed_issues": {},
+    "summary_mismatches": [],
+    "issues": [],
+    "ok": true
+  },
+  {
+    "scenario_id": "eval_multi_D10_pink",
+    "summary_path": "results\\kaggle_output_v2\\eval_multi_D10_pink\\summary.csv",
+    "per_series_path": "results\\kaggle_output_v2\\eval_multi_D10_pink\\per_series.csv",
+    "n_summary_methods": 18,
+    "n_per_series_rows": 900,
+    "expected_n_series": 50,
+    "expected_seed_start": 1000,
+    "seed_issues": {},
+    "summary_mismatches": [],
+    "issues": [],
+    "ok": true
+  },
+  {
+    "scenario_id": "eval_multi_D10_white",
+    "summary_path": "results\\kaggle_output_v2\\eval_multi_D10_white\\summary.csv",
+    "per_series_path": "results\\kaggle_output_v2\\eval_multi_D10_white\\per_series.csv",
+    "n_summary_methods": 18,
+    "n_per_series_rows": 900,
+    "expected_n_series": 50,
+    "expected_seed_start": 1000,
+    "seed_issues": {},
+    "summary_mismatches": [],
+    "issues": [],
+    "ok": true
+  },
+  {
+    "scenario_id": "eval_multi_D15_white",
+    "summary_path": "results\\kaggle_output_v2\\eval_multi_D15_white\\summary.csv",
+    "per_series_path": "results\\kaggle_output_v2\\eval_multi_D15_white\\per_series.csv",
+    "n_summary_methods": 18,
+    "n_per_series_rows": 900,
+    "expected_n_series": 50,
+    "expected_seed_start": 1000,
+    "seed_issues": {},
+    "summary_mismatches": [],
+    "issues": [],
+    "ok": true
+  }
+]

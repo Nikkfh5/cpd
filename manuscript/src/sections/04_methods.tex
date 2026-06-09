@@ -1,0 +1,48 @@
+﻿\section{Methods}
+
+All detectors use a common interface: a one-dimensional series and seed are
+mapped to zero-based predicted change points, optional per-timestep scores, and
+method metadata. The shared evaluation layer then applies the same matching
+margin and metrics to every method.
+
+The classical group contains distributional and structural-break tests adapted
+to the generated trajectories. Pettitt's rank-based test, SNHT, Buishand-type
+homogeneity tests, and the Chow test provide interpretable baselines for level
+or regression-structure changes. CUSUM is included as a sequential
+mean-change detector derived from Page's cumulative-sum idea
+\cite{page1954}. Additional segmentation-style baselines in the executable
+registry include MDL, SWAB, Gaussian-process-based detection, and a Nyblom
+test variant. These methods do not learn from the training split, but their
+outputs are converted to the same change-point-list representation.
+
+The learned group contains CatBoost, recurrent neural detectors, and a
+Transformer detector. All learned detectors operate on normalized sliding
+windows and return a local probability or logit for the window centre. Dense
+scores are then thresholded and converted to change-point lists by
+non-maximum suppression (NMS). The final benchmark configuration is summarized in
+Table~\ref{tab:learned_method_configs}; the neural detectors are trained on
+all five innovation families with \(D\) sampled from \([0.2,1.0]\) and
+\(\Delta t \in \{0.5,1.0,2.0\}\).
+
+\begin{table}[t]
+\centering
+\caption{Final learned-detector configurations used in the benchmark.}
+\label{tab:learned_method_configs}
+\small
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}p{0.14\linewidth}p{0.08\linewidth}p{0.48\linewidth}p{0.22\linewidth}@{}}
+\toprule
+Method & Window & Architecture & Test post-processing \\
+\midrule
+CatBoost & 50 & 14 statistical window features; 500 trees, depth 6, learning rate 0.05 & threshold 0.57; NMS 50 \\
+LSTM & 100 & two LSTM layers, hidden size 256, dropout 0.2; linear logit head & threshold 0.15; NMS 10 \\
+GRU & 100 & two GRU layers, hidden size 128, dropout 0.2; linear logit head & threshold 0.15; NMS 10 \\
+Transformer & 100 & \(d_{\mathrm{model}}=256\), 8 heads, 6 encoder layers, feed-forward size 512, dropout 0.1; mean pooling and linear logit head & threshold 0.15; NMS 10 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The comparison separates method-specific scoring from shared evaluation. Only
+final predicted change-point lists and, when available, dense score arrays are
+passed to metric computation.
+

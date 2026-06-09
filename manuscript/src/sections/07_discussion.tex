@@ -1,0 +1,37 @@
+\section{Discussion}
+
+The benchmark should be read as regime-dependent evidence. In the \(D=0.5\)
+white-noise scenario, labeled events are sparse and comparatively sharp in the
+assigned state-space level, which aligns with homogeneity and structural-break
+tests. SNHT and Chow therefore outperform the learned detectors in mean F1, and
+SNHT also localizes matched events close to the labeled crossing. This is not a
+general theorem about low-noise benchmarks; it is a result for the evaluated
+stochastic map, labeling rule, universal-training setup, and matching protocol.
+At \(D=1.0\) and under the strict \(D=1.5\) margin, local trajectory shape around
+a crossing becomes more useful, so learned window-based detectors rank higher.
+The \(D=1.0\) white-noise Transformer--LSTM comparison remains close, and the
+\(D=1.5\) ranking is tolerance-sensitive. Thus the neural result is best read as
+a strict-margin event-detection tradeoff, not as a universal claim about
+transition-time precision.
+
+The colored-noise results limit, rather than broaden, the neural claim. The
+pink-noise scenario in the frozen benchmark is a transfer check for the
+universally trained model, while the same-noise diagnostic tests whether
+noise-specific Transformer training changes the conclusion. It does not: the
+evaluated Transformer pipeline remains below the best classical baseline across
+the five tested \(D=1.0\) noise families. For the present FNL framing, this is a
+useful boundary. Temporal correlation structure is a separate benchmark
+variable, and detector choice for colored noise should be validated directly
+rather than extrapolated from the white-noise ranking.
+
+The scope is deliberately narrow. The benchmark is one-dimensional, uses a fixed
+main trajectory length, and evaluates four frozen scenarios rather than a dense
+map over \(D\), \(\Delta t\), and noise families. Its conclusions are strongest
+for trajectories from the same stochastic map with the same level-crossing
+labels, split policy, calibration procedure, and matching rule. Alternative
+state-space partitions, observation noise, latent-state settings, real sampling
+mechanisms, or different detector calibration rules may change the ranking.
+These boundaries are also what make the benchmark useful: it gives a controlled
+reference point for detecting dynamics-induced transition events before moving
+to less controlled data.
+

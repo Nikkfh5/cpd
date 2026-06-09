@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "If you use this benchmark or its reproduction artifacts, please cite the associated manuscript and this repository release."
+title: "CPD Benchmark for Noise-Induced Transitions"
+type: software
+authors:
+  - family-names: Krutikov
+    given-names: Nikita
+    email: ndkrutikov@edu.hse.ru
+repository-code: "https://github.com/Nikkfh5/cpd"
+version: "1.0"
+date-released: "2026-06-09"
+license: MIT
+keywords:
+  - change point detection
+  - stochastic dynamics
+  - noise-induced transitions
+  - benchmark

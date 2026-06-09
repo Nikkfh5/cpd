@@ -1,0 +1,21 @@
+result_group,scenario,scenario_id,D,noise_type,method,n_series,mean_precision,mean_recall,mean_f1,std_f1,mean_mae,mean_roc_auc,mean_pr_auc,threshold
+transformer,"D=1, blue",same_noise_D10_blue,1.0,blue,Transformer_v2_same_noise_blue,50,0.0964,0.6171,0.1598,0.11,28.64,0.4933,0.0862,0.05
+transformer,"D=1, brownian",same_noise_D10_brownian,1.0,brownian,Transformer_v2_same_noise_brownian,50,0.9463,0.0649,0.1212,0.0222,4.52,0.9655,0.9797,0.05
+transformer,"D=1, pink",same_noise_D10_pink,1.0,pink,Transformer_v2_same_noise_pink,50,0.9508,0.1528,0.263,0.0251,12.21,0.5027,0.9568,0.05
+transformer,"D=1, violet",same_noise_D10_violet,1.0,violet,Transformer_v2_same_noise_violet,50,0.0431,0.6069,0.0778,0.0724,37.15,0.5001,0.0308,0.05
+transformer,"D=1, white",same_noise_D10_white,1.0,white,Transformer_v2_same_noise_white,50,0.7015,0.5099,0.5859,0.0578,21.05,0.4911,0.6659,0.05
+classical,"D=1, blue",same_noise_D10_blue,1.0,blue,SNHT,50,1.0,0.4247,0.5227,0.3019,1.4,,,
+classical,"D=1, blue",same_noise_D10_blue,1.0,blue,Chow,50,1.0,0.4247,0.5227,0.3019,6.26,0.6804,0.5137,
+classical,"D=1, blue",same_noise_D10_blue,1.0,blue,CUSUM,50,0.3163,0.21,0.1913,0.192,4.44,0.4157,0.1152,
+classical,"D=1, brownian",same_noise_D10_brownian,1.0,brownian,CUSUM,50,0.622,0.1639,0.2591,0.0443,10.04,0.4979,0.646,
+classical,"D=1, brownian",same_noise_D10_brownian,1.0,brownian,SNHT,50,1.0,0.0042,0.0084,0.0004,0.28,,,
+classical,"D=1, brownian",same_noise_D10_brownian,1.0,brownian,Chow,50,0.84,0.0035,0.007,0.0031,2.83,0.5964,0.738,
+classical,"D=1, pink",same_noise_D10_pink,1.0,pink,CUSUM,50,0.9158,0.3109,0.4638,0.0372,11.34,0.4693,0.9378,
+classical,"D=1, pink",same_noise_D10_pink,1.0,pink,SNHT,50,1.0,0.0053,0.0105,0.0007,0.64,,,
+classical,"D=1, pink",same_noise_D10_pink,1.0,pink,Chow,50,0.98,0.0051,0.0102,0.0016,3.12,0.5872,0.957,
+classical,"D=1, violet",same_noise_D10_violet,1.0,violet,SNHT,50,1.0,0.739,0.7933,0.2815,1.36,,,
+classical,"D=1, violet",same_noise_D10_violet,1.0,violet,Chow,50,1.0,0.739,0.7933,0.2815,5.6,0.7643,0.6728,
+classical,"D=1, violet",same_noise_D10_violet,1.0,violet,CUSUM,50,0.04,0.0107,0.0167,0.0833,4.5,0.3576,0.0636,
+classical,"D=1, white",same_noise_D10_white,1.0,white,CUSUM,50,0.5744,0.7994,0.6632,0.0628,14.69,0.4836,0.7004,
+classical,"D=1, white",same_noise_D10_white,1.0,white,SNHT,50,1.0,0.0251,0.049,0.0097,1.12,,,
+classical,"D=1, white",same_noise_D10_white,1.0,white,Chow,50,0.98,0.0247,0.0481,0.0119,1.86,0.5529,0.7633,

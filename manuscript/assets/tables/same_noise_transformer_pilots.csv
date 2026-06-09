@@ -1,0 +1,6 @@
+﻿scenario,method,n_series,mean_precision,mean_recall,mean_f1,std_f1,mean_mae,mean_roc_auc,mean_pr_auc,threshold,validation_status,summary_path
+same_noise_D10_blue,Transformer_same_noise_blue,50,0.0964,0.6171,0.1598,0.11,28.64,0.4933,0.0862,0.05,ok,results\publication_same_noise\same_noise_D10_blue\eval_multi\summary.csv
+same_noise_D10_brownian,Transformer_same_noise_brownian,50,0.9463,0.0649,0.1212,0.0222,4.52,0.9655,0.9797,0.05,ok,results\publication_same_noise\same_noise_D10_brownian\eval_multi\summary.csv
+same_noise_D10_pink,Transformer_same_noise_pink,50,0.9508,0.1528,0.263,0.0251,12.21,0.5027,0.9568,0.05,ok,results\publication_same_noise\same_noise_D10_pink\eval_multi\summary.csv
+same_noise_D10_violet,Transformer_same_noise_violet,50,0.0431,0.6069,0.0778,0.0724,37.15,0.5001,0.0308,0.05,ok,results\publication_same_noise\same_noise_D10_violet\eval_multi\summary.csv
+same_noise_D10_white,Transformer_same_noise_white,50,0.7015,0.5099,0.5859,0.0578,21.05,0.4911,0.6659,0.05,ok,results\publication_same_noise\same_noise_D10_white\eval_multi\summary.csv

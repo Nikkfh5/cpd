@@ -1,0 +1,2 @@
+method,n_series,mean_precision,mean_recall,mean_f1,std_f1,mean_mae,mean_roc_auc,mean_pr_auc,threshold
+Transformer_v2_same_noise_violet,50,0.0431,0.6069,0.0778,0.0724,37.15,0.5001,0.0308,0.05

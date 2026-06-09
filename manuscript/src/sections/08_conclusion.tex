@@ -1,0 +1,23 @@
+\section{Conclusion}
+
+This paper presents a reproducible benchmark for comparing change point
+detectors on dynamics-generated noise-induced transitions. The benchmark fixes
+the stochastic map, labeling rule, train/calibration/test split, calibration
+procedure, matching margin, and metrics, so that classical tests and learned
+detectors are compared under one protocol.
+
+The frozen four-scenario results show \(D\)- and noise-dependent rankings. In
+the sparse \(D=0.5\) white-noise scenario, classical homogeneity tests lead.
+Under the primary 25-step margin, learned window-based detectors lead the two
+evaluated \(D=1.0\) scenarios and the strict-margin \(D=1.5\) white-noise
+scenario. These conclusions are bounded: the \(D=1.5\) ranking is
+tolerance-sensitive, and the \(D=1.0\) white-noise Transformer--LSTM gap is not
+statistically significant in the paired test.
+
+The same-noise diagnostic shows that noise-specific Transformer training alone
+does not produce a universal colored-noise neural advantage under the evaluated
+pipeline. The main contribution is therefore the controlled benchmark and the
+evidence it provides for the evaluated stochastic-map scenarios. Future work
+should test \(D\)- and noise-conditioned detectors, alternative label
+partitions, and settings with noisy or latent observations.
+

@@ -1,0 +1,44 @@
+\section{Related Work}
+
+Change point detection (CPD) methods are usually grouped into online and
+offline formulations; the offline setting used here estimates event locations
+after the full series has been observed \cite{adams2007}. Surveys emphasize
+that benchmark conclusions depend on detector assumptions, calibration,
+post-processing, data generation, annotation, and matching rules
+\cite{aminikhanghahi2017,truong2020,vandenburg2020}. Most simulations prescribe
+the change structure directly, for example by placing shifts in a piecewise
+signal or concatenating distinct segments
+\cite{killick2012,fryzlewicz2014,gharghabi2019,ermshaus2023clasp}. Here the
+labels come from a simulated stochastic trajectory: their number and spacing
+are consequences of the dynamics and noise realization.
+
+This distinction separates the benchmark from SDE-based detection models.
+Recent work has used latent stochastic differential equations as a model class
+for change point detection \cite{ryzhikov2023latent_sde_cpd}. Here the
+stochastic dynamics are not the detector. They define the transition process on
+which existing classical, window-based, and learned detectors are evaluated
+under one fixed protocol.
+
+The stochastic-dynamics motivation is rooted in noise-induced motion between
+regions of state space. Classical work on random perturbations, escape
+problems, and sample paths describes how fluctuations can drive transitions in
+nonlinear systems \cite{kramers1940,freidlin1998,berglund2006}. Within
+\textit{Fluctuation and Noise Letters}, noise-induced escape from the Lorenz
+attractor has been studied as an escape problem in nonlinear dynamics
+\cite{anishchenko2001fnl_escape}. Colored noise is also a natural part of this
+setting rather than only a robustness stress test: FNL studies have examined
+the role of colored noise in stochastic-system behavior
+\cite{valenti2005fnl_colored}, and recent work has used deep learning to
+characterize colored-noise time-series patterns
+\cite{barauna2024fnl_colored_deep}. These papers motivate treating the
+colored-noise diagnostic in this article as a boundary on neural claims, not as
+a generic machine-learning add-on.
+
+The compared methods cover standard CPD families: CUSUM-type, rank-based,
+homogeneity, and structural-break tests
+\cite{page1954,pettitt1979,alexandersson1986,buishand1982,chow1960};
+segmentation and local-window methods
+\cite{killick2012,harchaoui2009,liu2013}; and learned detectors trained from
+labeled windows \cite{li2024deepcpd}. Because learned detectors use generated
+labels, the benchmark keeps training, calibration, and test trajectories
+independent.

@@ -1,0 +1,95 @@
+﻿\section{Results}
+
+This section reports the frozen four-scenario benchmark and the same-noise
+Transformer diagnostic. Validation checks confirmed the expected test seeds
+\(1000\)--\(1049\) and reproduced the stored scenario summaries from per-series
+outputs under the primary 25-step matching margin. Table~\ref{tab:main-benchmark-top5}
+reports the top five methods per scenario; full leaderboards are kept in the
+reproducibility package.
+
+\begin{table}[t]
+  \centering
+  \caption{Top five methods by mean F1 in each frozen benchmark scenario.
+  Precision (P), recall (R), F1, mean absolute localization error (MAE),
+  ROC-AUC (ROC), and PR-AUC (PR) are reported when available.}
+  \label{tab:main-benchmark-top5}
+  \input{../assets/tables/main_benchmark_top5.tex}
+\end{table}
+
+\begin{table}[t]
+  \centering
+  \caption{Bootstrap confidence intervals for mean F1, computed by resampling
+  independent test series.}
+  \label{tab:bootstrap-f1-ci}
+  \input{../assets/tables/bootstrap_f1_ci_top5.tex}
+\end{table}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\linewidth]{../assets/figures/fig02_primary_f1_benchmark.pdf}
+  \caption{Primary benchmark F1 at the matching margin of 25 timesteps for the
+  manuscript methods and frozen test scenarios. Classical tests lead in the
+  sparse low-\(D\) setting; learned window-based detectors rank higher in the
+  \(D=1.0\) and strict \(D=1.5\) evaluations.}
+  \label{fig:primary-f1-benchmark}
+\end{figure}
+
+Table~\ref{tab:main-benchmark-top5} and Fig.~\ref{fig:primary-f1-benchmark}
+separate the sparse low-\(D\) case from the larger-\(D\) cases. For \(D=0.5\)
+with white noise, SNHT leads with mean F1 \(0.725\), followed by Chow at
+\(0.645\); the strongest listed learned detector is far below this range. SNHT
+also has low matched-event localization error, with MAE \(1.360\) timesteps.
+For \(D=1.0\), learned window-based detectors rank higher: Transformer leads in
+the white-noise and pink-noise scenarios, although the white-noise
+Transformer--LSTM gap is qualified by the paired test below. For \(D=1.5\) with
+white noise, Transformer leads under the primary 25-step margin, while LSTM and
+CUSUM are close. The matching-margin robustness check shows that this ranking
+is tolerance-sensitive: CUSUM overtakes Transformer when the evaluation
+tolerance is widened to 50 or 100 timesteps.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\linewidth]{../assets/figures/fig04_f1_mae_tradeoff.pdf}
+  \caption{Mean F1 and mean absolute localization error for selected methods at
+  the primary matching margin. MAE is computed only for matched detections and
+  should be read together with F1.}
+  \label{fig:f1-mae-tradeoff}
+\end{figure}
+
+\begin{table}[t]
+  \centering
+  \caption{Paired Wilcoxon comparisons on per-series F1 for key method pairs.}
+  \label{tab:paired-wilcoxon}
+  \input{../assets/tables/paired_wilcoxon_key_comparisons.tex}
+\end{table}
+
+The paired tests in Table~\ref{tab:paired-wilcoxon} support the bounded ranking
+claims. SNHT exceeds Chow and GRU in the \(D=0.5\), white-noise scenario. At
+\(D=1.0\) with white noise, Transformer exceeds CUSUM and GRU, but the
+Transformer--LSTM comparison remains close (\(p=0.0937\)). Under the primary
+margin, Transformer exceeds CUSUM for \(D=1.0\) pink noise and \(D=1.5\) white
+noise; the robustness pass qualifies the latter result because CUSUM improves
+under wider tolerances.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\linewidth]{../assets/figures/fig05_detection_overlay.pdf}
+  \caption{Representative detection windows. Vertical lines show true change
+  points; markers show selected method predictions.}
+  \label{fig:detection-overlay}
+\end{figure}
+
+\begin{table}[t]
+  \centering
+  \caption{Same-noise \(D=1.0\) diagnostic comparison against the best
+  classical baseline on the same 50 test seeds.}
+  \label{tab:same-noise-diagnostic}
+  \input{../assets/tables/same_noise_best_f1_summary.tex}
+\end{table}
+
+The same-noise experiment in Table~\ref{tab:same-noise-diagnostic} gives the
+colored-noise boundary. Training and testing Transformer separately within each
+\(D=1.0\) noise family still leaves it below the best classical baseline in all
+five cases. Noise-specific Transformer training alone therefore does not support
+a universal colored-noise neural-advantage claim under the evaluated pipeline.
+

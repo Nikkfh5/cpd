@@ -1,0 +1,4 @@
+method,n_series,mean_precision,mean_recall,mean_f1,std_f1,mean_mae,mean_roc_auc,mean_pr_auc
+CUSUM,50,0.3163,0.21,0.1913,0.192,4.44,0.4157,0.1152
+SNHT,50,1.0,0.4247,0.5227,0.3019,1.4,,
+Chow,50,1.0,0.4247,0.5227,0.3019,6.26,0.6804,0.5137
