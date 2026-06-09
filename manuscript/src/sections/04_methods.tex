@@ -22,7 +22,9 @@ scores are then thresholded and converted to change-point lists by
 non-maximum suppression (NMS). The final benchmark configuration is summarized in
 Table~\ref{tab:learned_method_configs}; the neural detectors are trained on
 all five innovation families with \(D\) sampled from \([0.2,1.0]\) and
-\(\Delta t \in \{0.5,1.0,2.0\}\).
+\(\Delta t \in \{0.5,1.0,2.0\}\). The \(D=1.5\) test scenario is therefore an
+extrapolation test for the learned detectors with respect to the training
+\(D\)-range.
 
 \begin{table}[t]
 \centering

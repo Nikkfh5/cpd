@@ -20,7 +20,10 @@ strict Euler-Maruyama discretization of a continuous-time model.
 
 - `algoritms/`: CPD methods and adapters. The directory name is historical and
   intentionally preserved.
-- `configs/base.yaml`: base generation and evaluation configuration.
+- `configs/base.yaml`: generic example/default rerun configuration.
+- `configs/fnl_primary.yaml`: manuscript-facing frozen protocol, including
+  the primary 25-step matching margin and learned-detector post-processing
+  used by the manuscript table.
 - `data_source_policy.py` and `DATA_GENERATION_CONTRACT.md`: reproducibility
   checks for generator source, metadata, and allowed parameters.
 - `results/kaggle_output_v2/`: frozen primary benchmark outputs used for the
@@ -63,7 +66,10 @@ noise types, and deterministic generation under the committed configuration.
 ## Reproduce Manuscript Tables and Figures
 
 The commands below rebuild the manuscript-facing artifacts from committed
-frozen outputs. They do not retrain neural models.
+frozen outputs. They do not retrain neural models. The exact manuscript-facing
+protocol is documented in `configs/fnl_primary.yaml`; `configs/base.yaml` is a
+generic rerun example and should not be treated as the frozen manuscript
+configuration.
 
 Primary benchmark tables:
 
@@ -94,6 +100,10 @@ Expected output directories:
 - `manuscript/assets/tables/`
 - `manuscript/assets/figures/`
 
+The main manuscript uses the frozen outputs in `results/`. The LaTeX source
+refers to additional secondary diagnostics as supplementary material; the
+supplement source is `manuscript/src/supplementary.tex`.
+
 Build the manuscript PDF:
 
 ```bash
@@ -114,7 +124,8 @@ manuscript/src/main.pdf
 
 The manuscript tables are based on frozen outputs committed under `results/`.
 Full evaluation reruns are more expensive and may depend on model weights and
-hardware availability. A typical rerun command is:
+hardware availability. `configs/base.yaml` is a generic example for such reruns,
+not the exact frozen manuscript protocol. A typical rerun command is:
 
 ```bash
 python eval_multi.py --config configs/base.yaml --n-series 50 --output-dir results/eval_multi_rerun

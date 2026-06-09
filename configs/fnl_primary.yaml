@@ -1,0 +1,101 @@
+# Manuscript-facing frozen protocol for the FNL benchmark.
+#
+# This file documents the configuration that corresponds to the committed
+# manuscript tables and figures. The manuscript reproduction scripts rebuild
+# tables from frozen outputs under results/; they do not retrain models.
+
+dataset_source: "data_utils"
+
+generation:
+  length: 2000
+  dt: 1.0
+  source_path: "algoritms/data_utils.py"
+
+splits:
+  train_seeds: [0, 99]
+  calibration_seeds: [5000, 5019]
+  test_seeds: [1000, 1049]
+  n_test_series: 50
+
+test_scenarios:
+  - scenario_id: "eval_multi_D05_white"
+    label: "D=0.5, white"
+    D: 0.5
+    noise_type: "white"
+  - scenario_id: "eval_multi_D10_white"
+    label: "D=1, white"
+    D: 1.0
+    noise_type: "white"
+  - scenario_id: "eval_multi_D10_pink"
+    label: "D=1, pink"
+    D: 1.0
+    noise_type: "pink"
+  - scenario_id: "eval_multi_D15_white"
+    label: "D=1.5, white"
+    D: 1.5
+    noise_type: "white"
+
+evaluation:
+  primary_margin: 25
+  robustness_margins: [25, 50, 100]
+  nan_mae: 9999.0
+  no_change_series_f1:
+    true_cps_empty_predicted_cps_empty: 1.0
+    true_cps_empty_predicted_cps_nonempty: 0.0
+    true_cps_nonempty_predicted_cps_empty: 0.0
+
+frozen_outputs:
+  primary_benchmark: "results/kaggle_output_v2"
+  matching_margin_robustness: "results/matching_margin_robustness_outputs"
+  same_noise_transformer: "results/publication_same_noise"
+  same_noise_classical: "results/publication_same_noise_classical"
+
+learned_method_params:
+  CatBoost:
+    manuscript_display_name: "CatBoost"
+    window_size: 50
+    threshold: 0.57
+    nms_min_distance: 50
+    weights_path: "models/catboost_seq5000_n50_seed42.cbm"
+  LSTM_v2:
+    manuscript_display_name: "LSTM"
+    hidden_size: 256
+    num_layers: 2
+    dropout: 0.2
+    window_size: 100
+    threshold: 0.15
+    nms_min_distance: 10
+    train_d_range: [0.2, 1.0]
+    train_dt_values: [0.5, 1.0, 2.0]
+    weights_path: "models/lstm_v2_h256_l2_w100_seq5000_n200_all_noise_seed42.pt"
+  GRU_v2:
+    manuscript_display_name: "GRU"
+    hidden_size: 128
+    num_layers: 2
+    dropout: 0.2
+    window_size: 100
+    threshold: 0.15
+    nms_min_distance: 10
+    train_d_range: [0.2, 1.0]
+    train_dt_values: [0.5, 1.0, 2.0]
+    weights_path: "models/gru_v2_h128_l2_w100_seq5000_n100_all_noise_seed42.pt"
+  Transformer_v2:
+    manuscript_display_name: "Transformer"
+    d_model: 256
+    nhead: 8
+    num_layers: 6
+    dim_feedforward: 512
+    dropout: 0.1
+    window_size: 100
+    threshold: 0.15
+    nms_min_distance: 10
+    train_d_range: [0.2, 1.0]
+    train_dt_values: [0.5, 1.0, 2.0]
+    weights_path: "models/transformer_v2_dm256_h8_l6_w100_seq5000_n100_all_noise_seed42.pt"
+
+same_noise_diagnostic:
+  D: 1.0
+  noise_types: ["white", "pink", "brownian", "blue", "violet"]
+  transformer_outputs: "results/publication_same_noise"
+  classical_outputs: "results/publication_same_noise_classical"
+  note: "Noise-family-specific Transformer runs are diagnostic and are not a replacement for the frozen universal-training benchmark."

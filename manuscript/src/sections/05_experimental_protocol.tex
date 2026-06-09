@@ -27,7 +27,10 @@ reported metrics are precision, recall, F1 score, and mean absolute
 localization error for matched detections. For methods that return dense
 scores, ROC-AUC and PR-AUC are also reported. When a method detects no change
 points, its prediction is represented by an empty list rather than a missing
-value.
+value. At the series level, a trajectory with no true and no predicted change
+points is assigned precision, recall, and F1 equal to 1; a trajectory with no
+true change points but at least one prediction is counted as a false-positive
+case and receives zero precision, recall, and F1.
 
 \subsection{Choice of Matching Margin and Robustness}
 

@@ -29,7 +29,24 @@ Smoke test passed: policy checks and reproducibility are valid.
 This check validates the public data-generation policy, mandatory metadata, and
 deterministic generation.
 
-## 3. Primary Benchmark Tables
+## 3. Manuscript-Facing Frozen Configuration
+
+The exact manuscript-facing frozen protocol is documented in:
+
+```text
+configs/fnl_primary.yaml
+```
+
+This file records the four frozen test scenarios, train/calibration/test seed
+ranges, primary 25-step matching margin, matching-margin robustness margins,
+series-level no-change F1 convention, and learned-detector post-processing used
+in the manuscript table (`threshold 0.15; NMS 10` for LSTM_v2, GRU_v2, and
+Transformer_v2).
+
+`configs/base.yaml` remains a generic example/default rerun configuration. It
+is intentionally not the frozen manuscript configuration.
+
+## 4. Primary Benchmark Tables
 
 ```bash
 python scripts/build_publication_tables.py
@@ -51,7 +68,7 @@ Outputs:
 - `manuscript/assets/tables/p0_artifact_validation.md`
 - `manuscript/assets/tables/p0_artifact_validation.json`
 
-## 4. Same-Noise Diagnostic Tables
+## 5. Same-Noise Diagnostic Tables
 
 ```bash
 python scripts/build_same_noise_tables.py
@@ -77,7 +94,7 @@ Outputs:
 - `manuscript/assets/tables/same_noise_transformer_vs_universal_paired.csv`
 - `manuscript/assets/tables/same_noise_transformer_vs_universal_paired.tex`
 
-## 5. Compact Manuscript Tables
+## 6. Compact Manuscript Tables
 
 ```bash
 python scripts/build_article_compact_tables.py
@@ -93,7 +110,7 @@ Outputs:
 - `manuscript/assets/tables/matching_margin_robustness_leaders.tex`
 - `manuscript/assets/tables/same_noise_best_f1_summary.tex`
 
-## 6. Figures
+## 7. Figures
 
 ```bash
 python scripts/build_publication_figures.py
@@ -115,7 +132,7 @@ Outputs:
 - `manuscript/assets/figures/fig05_detection_overlay.{pdf,png}`
 - `manuscript/assets/figures/publication_figures_manifest.md`
 
-## 7. Manuscript PDF
+## 8. Manuscript PDF
 
 ```bash
 cd manuscript/src
@@ -131,11 +148,20 @@ Expected output:
 manuscript/src/main.pdf
 ```
 
-## 8. Expensive Reruns
+Optional supplementary material is provided as:
+
+```text
+manuscript/src/supplementary.tex
+manuscript/src/supplementary.pdf
+```
+
+## 9. Expensive Reruns
 
 The committed manuscript artifacts are rebuilt from frozen outputs. Full
 evaluation reruns can be expensive and may depend on model weights and hardware.
 Use them for independent re-evaluation, not for exact manuscript rebuilds.
+`configs/base.yaml` is the generic example used by this command; for the exact
+manuscript-facing frozen protocol, read `configs/fnl_primary.yaml`.
 
 Example:
 

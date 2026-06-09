@@ -1,0 +1,32 @@
+\documentclass{article}
+
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage[margin=1in]{geometry}
+
+\begin{document}
+
+\begin{center}
+{\large Supplementary Material}\\[6pt]
+{\bf A Controlled Benchmark for Statistical Detection of Noise-Induced
+Transitions in Nonlinear Stochastic Dynamics}
+\end{center}
+
+\begin{table}[htbp]
+  \centering
+  \caption{Supplementary Table S1. Bootstrap confidence intervals for mean F1,
+  computed by resampling independent test series.}
+  \label{tab:supp-bootstrap-f1-ci}
+  \input{../assets/tables/bootstrap_f1_ci_top5.tex}
+\end{table}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\linewidth]{../assets/figures/fig04_f1_mae_tradeoff.pdf}
+  \caption{Supplementary Fig. S1. Mean F1 and mean absolute localization error
+  for selected methods at the primary matching margin. MAE is computed only for
+  matched detections and should be read together with F1.}
+  \label{fig:supp-f1-mae-tradeoff}
+\end{figure}
+
+\end{document}

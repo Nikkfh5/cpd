@@ -1,3 +1,11 @@
+# Generic example/default rerun configuration.
+#
+# This file is intentionally not the exact manuscript frozen configuration:
+# it keeps the historical baseline defaults used by the public smoke/rerun
+# tooling. The manuscript-facing frozen protocol is documented separately in
+# configs/fnl_primary.yaml, and manuscript tables are rebuilt from committed
+# frozen outputs under results/.
+
 dataset_source: "data_utils"
 generation:
   length: 2000
